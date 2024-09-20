@@ -1,0 +1,68 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+</head>
+<body>
+    <h1>Day {{ day }}: {{ plan }}</h1>
+    <form action="/done" method="POST">
+        <button type="submit">Mark as Done</button>
+    </form>
+    
+    <h2>Track your weight</h2>
+    <form action="/track_weight" method="POST">
+        <label for="weight">Enter Weight:</label>
+        <input type="number" step="0.1" name="weight" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="/view_weight">View Weight Graph</a>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+</head>
+<body>
+    <h1>Day {{ day }}: {{ plan.title }}</h1>
+    <ul>
+        {% for exercise, details in plan.exercises %}
+            <li>
+                {{ exercise }} - {{ details }}
+                <form action="/track_weight/{{ exercise }}" method="POST" style="display:inline;">
+                    <input type="number" step="0.1" name="weight" placeholder="Weight lifted (kgs)" required>
+                    <!-- <button type="submit">Go💨</button> -->
+                    <button type="submit" style="background-color: rgb(154, 203, 231); color: white;">Go💨</button>
+                </form>
+                <form action="/view_graph/{{ exercise }}" method="GET" style="display:inline;">
+                    <button type="submit">View Progress 💪🏻</button>
+                </form>
+            </li>
+            <p></p>
+        {% endfor %}
+    </ul>
+    
+    <form action="/done" method="POST">
+        <button type="submit">Mark as Done</button>
+    </form>
+
+    <h2>Track your body weight</h2>
+    <form action="/track_bodyweight" method="POST">
+        <label for="weight">Enter Weight:</label>
+        <input type="number" step="0.1" name="weight" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p></p>
+
+    <a href="/view_weight">View Progress 📈</a>
+    <h1>Body of an athlete 🏋🏻‍♂️ Mind of a stoic 🧘🏻‍♂️ Spirit of a warrior 🪖</h1>
+</body>
+</html>
